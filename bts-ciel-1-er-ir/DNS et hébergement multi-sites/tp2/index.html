@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Entreprise, Accueil</title>
+  <meta name="description" content="Page d'accueil du domaine racine, site 1." />
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.09);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --line: rgba(255,255,255,.12);
+      --accent: #7c5cff;
+      --accent2: #22c55e;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1100px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(124,92,255,.28), transparent 60%),
+        radial-gradient(900px 700px at 80% 20%, rgba(34,197,94,.18), transparent 55%),
+        radial-gradient(900px 700px at 50% 100%, rgba(255,255,255,.08), transparent 60%),
+        var(--bg);
+      line-height:1.45;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    .container{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 26px 18px 60px;
+    }
+
+    /* Top bar */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border-radius: var(--radius);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 14px;
+      z-index: 10;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 220px;
+    }
+    .logo{
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(16px 16px at 30% 30%, rgba(255,255,255,.55), transparent 60%),
+        linear-gradient(135deg, rgba(124,92,255,.9), rgba(34,197,94,.8));
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .brand .name{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      line-height:1.1;
+    }
+    .brand .name b{ font-size: 14px; letter-spacing:.2px; }
+    .brand .name span{ font-size: 12px; color: var(--muted); }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content:center;
+    }
+    .pill{
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 13px;
+      transition: transform .15s ease, background .15s ease, color .15s ease;
+    }
+    .pill:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.07);
+      color: var(--text);
+    }
+
+    .cta{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width: 220px;
+      justify-content:flex-end;
+    }
+    .btn{
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font-size: 13px;
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      user-select:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.2);
+    }
+    .btn.primary{
+      border-color: rgba(124,92,255,.45);
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(124,92,255,.45));
+    }
+    .btn.primary:hover{
+      border-color: rgba(124,92,255,.65);
+      background: linear-gradient(135deg, rgba(124,92,255,1), rgba(124,92,255,.5));
+    }
+
+    /* Hero */
+    .hero{
+      margin-top: 20px;
+      padding: 42px 18px 24px;
+      border-radius: var(--radius2);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position: relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(700px 280px at 20% 25%, rgba(124,92,255,.28), transparent 65%),
+        radial-gradient(520px 260px at 90% 40%, rgba(34,197,94,.2), transparent 60%);
+      pointer-events:none;
+      filter: blur(10px);
+      opacity: .9;
+    }
+    .hero-inner{
+      position:relative;
+      max-width: var(--max);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1.25fr .9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .hero h1{
+      margin:0 0 10px;
+      font-size: clamp(26px, 3.2vw, 42px);
+      letter-spacing: -0.5px;
+    }
+    .hero p{
+      margin:0 0 18px;
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 62ch;
+    }
+    .hero-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .notice{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      margin-top: 4px;
+      background: var(--accent2);
+      box-shadow: 0 0 0 6px rgba(34,197,94,.12);
+      flex: 0 0 auto;
+    }
+
+    /* Right card */
+    .panel{
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.22);
+      padding: 16px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      min-height: 100%;
+    }
+    .panel h2{
+      margin:0;
+      font-size: 14px;
+      color: var(--text);
+      letter-spacing:.2px;
+    }
+    .kv{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .kv .item{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .tag{
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(124,92,255,.35);
+      background: rgba(124,92,255,.14);
+      color: rgba(255,255,255,.86);
+      font-weight: 600;
+      letter-spacing:.2px;
+      font-size: 12px;
+      white-space:nowrap;
+    }
+    code.mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      color: rgba(255,255,255,.86);
+    }
+
+    /* Sections */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .card{
+      grid-column: span 4;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.25);
+      transition: transform .15s ease, background .15s ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.06);
+    }
+    .card h3{
+      margin: 0 0 8px;
+      font-size: 14px;
+      letter-spacing:.2px;
+    }
+    .card p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .section{
+      margin-top: 18px;
+      border-radius: var(--radius2);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .section h2{
+      margin: 0 0 10px;
+      font-size: 16px;
+      letter-spacing:.2px;
+    }
+    .cols{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .box{
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      padding: 14px;
+    }
+    .box h4{
+      margin: 0 0 8px;
+      font-size: 14px;
+    }
+    .list{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .list li{ margin: 6px 0; }
+
+    /* Footer */
+    footer{
+      margin-top: 18px;
+      color: rgba(255,255,255,.6);
+      font-size: 12px;
+      text-align:center;
+      padding: 18px 0 0;
+    }
+    .footline{
+      margin: 0 auto 10px;
+      height: 1px;
+      max-width: 720px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      .cta{ display:none; }
+      .brand{ min-width: auto; }
+    }
+    @media (max-width: 860px){
+      .card{ grid-column: span 6; }
+      .cols{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px){
+      .card{ grid-column: span 12; }
+      nav{ display:none; }
+      .topbar{ position: static; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="topbar" aria-label="Navigation principale">
+      <a class="brand" href="#top" title="Accueil">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="name">
+          <b>Entreprise</b>
+          <span>Site 1, domaine racine</span>
+        </div>
+      </a>
+
+      <nav aria-label="Liens">
+        <a class="pill" href="#services">Services</a>
+        <a class="pill" href="#informations">Informations</a>
+        <a class="pill" href="#contact">Contact</a>
+      </nav>
+
+      <div class="cta">
+        <a class="btn" href="mailto:contact@entreprise.local">Contacter</a>
+        <a class="btn primary" href="#services">Découvrir</a>
+      </div>
+    </header>
+
+    <main id="top" class="hero" role="main">
+      <div class="hero-inner">
+        <section aria-label="Présentation">
+          <h1>Bienvenue sur le domaine racine</h1>
+          <p>
+            Cette page sert de vitrine pour tester la résolution DNS et l’hébergement multi-sites via NGINX.
+            Elle est volontairement simple, lisible, et responsive.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#services">Voir les services</a>
+            <a class="btn" href="#informations">Comprendre le fonctionnement</a>
+          </div>
+
+          <div class="notice">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <b style="color: rgba(255,255,255,.9);">Statut du labo :</b>
+              DNS opérationnel, serveur web actif, virtual hosts en place.
+              <span style="display:block; margin-top:4px;">
+                Astuce, testez aussi <code class="mono">blog.entreprise.local</code> et <code class="mono">intranet.entreprise.local</code>.
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <aside class="panel" aria-label="Détails techniques">
+          <h2>Détails techniques</h2>
+          <div class="kv">
+            <div class="item">
+              <span>Nom du site</span>
+              <span class="tag">site1</span>
+            </div>
+            <div class="item">
+              <span>Domaine</span>
+              <code class="mono">entreprise.local</code>
+            </div>
+            <div class="item">
+              <span>Serveur web</span>
+              <code class="mono">NGINX</code>
+            </div>
+            <div class="item">
+              <span>Chemin web</span>
+              <code class="mono">/var/www/site1</code>
+            </div>
+            <div class="item">
+              <span>But</span>
+              <span style="text-align:right;">DNS, multi-host, diagnostics</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <section id="services" class="grid" aria-label="Services">
+      <article class="card">
+        <h3>Résolution DNS</h3>
+        <p>Associer un nom à une IP, tester avec <code class="mono">nslookup</code> et comprendre zone, A, CNAME.</p>
+      </article>
+
+      <article class="card">
+        <h3>Multi-sites NGINX</h3>
+        <p>Un seul serveur, plusieurs sites, NGINX choisit via <code class="mono">server_name</code> et le champ Host.</p>
+      </article>
+
+      <article class="card">
+        <h3>Diagnostic simple</h3>
+        <p>Vérifier DNS, service NGINX, virtual host, et contenu, sans se perdre.</p>
+      </article>
+    </section>
+
+    <section id="informations" class="section" aria-label="Informations">
+      <h2>Comprendre ce que vous testez</h2>
+      <div class="cols">
+        <div class="box">
+          <h4>Ce que fait le DNS</h4>
+          <ul class="list">
+            <li>Transformer un nom de domaine en adresse IP.</li>
+            <li>Ne choisit pas quel site s’affiche.</li>
+            <li>Peut faire pointer plusieurs noms vers la même IP.</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h4>Ce que fait NGINX</h4>
+          <ul class="list">
+            <li>Répond aux requêtes HTTP et sert le contenu.</li>
+            <li>Choisit le bon site grâce au nom demandé (Host) et <code class="mono">server_name</code>.</li>
+            <li>Associe un nom à un dossier via <code class="mono">root</code>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section" aria-label="Contact">
+      <h2>Contact</h2>
+      <div class="cols">
+        <div class="box">
+          <h4>Coordonnées</h4>
+          <ul class="list">
+            <li>Email : <a href="mailto:contact@entreprise.local">contact@entreprise.local</a></li>
+            <li>Téléphone : 00 00 00 00 00</li>
+            <li>Adresse : Montpellier, France</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h4>Notes</h4>
+          <ul class="list">
+            <li>Remplacez les informations ci-dessus si besoin.</li>
+            <li>Cette page est prévue pour un TP, pas pour une production.</li>
+            <li>Ajoutez votre contenu, images, et styles au fil des TP.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footline" aria-hidden="true"></div>
+      <div>© <span id="year"></span> Entreprise, Site 1, TP DNS & multi-sites</div>
+    </footer>
+  </div>
+
+  <script>
+    // Petit confort : année automatique (sans dépendances)
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
